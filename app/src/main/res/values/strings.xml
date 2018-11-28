@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Counter</string>
+
+    <string name="textView_days">Days</string>
+    <string name="textView_hours">Hours</string>
+    <string name="textView_minutes">Minutes</string>
+    <string name="textView_secs">Secs</string>
+    <string name="textView_meal">Meals</string>
+    <string name="textView_start_date">Start Date</string>
+    <string name="textView_end_date">End Date</string>
+    <string name="button_next">Next</string>
+    <string name="button_count">Start counting!!!</string>
+</resources>
