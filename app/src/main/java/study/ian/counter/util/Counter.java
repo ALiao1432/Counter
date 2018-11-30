@@ -1,6 +1,7 @@
 package study.ian.counter.util;
 
 import android.content.Context;
+import android.util.Log;
 
 import java.util.Calendar;
 
@@ -57,16 +58,24 @@ public class Counter {
         int meal;
         int hour = getRemainingHour();
 
-        meal = (hour / 24) * 3;
-        if (hasBreakfast(hour % 24)) {
-            meal++;
+        if (hour < 12) {
+            meal = 1;
+            if (hasBreakfast(hour + 12)) {
+                meal++;
+            }
+        } else {
+            meal = (hour - 12) / 24 * 3 + 2;
+            if (hasBreakfast((hour - 12) % 24)) {
+                meal++;
+            }
+            if (hasLaunch((hour - 12) % 24)) {
+                meal++;
+            }
+            if (hasDinner((hour - 12) % 24)) {
+                meal++;
+            }
         }
-        if (hasLaunch(hour % 24)) {
-            meal++;
-        }
-        if (hasDinner(hour % 24)) {
-            meal++;
-        }
+
         return meal;
     }
 
@@ -78,14 +87,14 @@ public class Counter {
     }
 
     private boolean hasBreakfast(int hour) {
-        return hour > 8;
+        return hour >= 16;
     }
 
     private boolean hasLaunch(int hour) {
-        return hour > 12;
+        return hour >= 12;
     }
 
     private boolean hasDinner(int hour) {
-        return hour > 17;
+        return hour >= 7;
     }
 }

@@ -51,7 +51,6 @@ public class HourFragment extends Fragment {
                         int min = counter.getRemainingMin();
                         int sec = counter.getRemainingSec();
 
-                        Log.d(TAG, "handleMessage: h : " + hour + ", m : " + min + ", s : " + sec);
                         morphHourH.performAnimation(VdConstants.vdList.get(hour / 100));
                         morphHourT.performAnimation(VdConstants.vdList.get((hour % 100) / 10));
                         morphHourU.performAnimation(VdConstants.vdList.get(hour % 10));
@@ -110,5 +109,4 @@ public class HourFragment extends Fragment {
             }
         }).start();
     }
-
 }

@@ -44,7 +44,6 @@ public class DayFragment extends Fragment {
                 switch (msg.what) {
                     case 9487:
                         int day = counter.getRemainingDay();
-                        Log.d(TAG, "handleMessage: day : " + day);
                         morphDayH.performAnimation(VdConstants.vdList.get(day / 100));
                         morphDayT.performAnimation(VdConstants.vdList.get((day % 100) / 10));
                         morphDayU.performAnimation(VdConstants.vdList.get(day % 10));
