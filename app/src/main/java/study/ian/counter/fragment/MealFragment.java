@@ -7,12 +7,15 @@ import android.os.Message;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.graphics.Palette;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import java.text.MessageFormat;
+import java.util.ArrayList;
+import java.util.List;
 
 import study.ian.morphview.MorphView;
 import study.ian.counter.R;
@@ -27,6 +30,7 @@ public class MealFragment extends Fragment {
     private MorphView morphMealT;
     private MorphView morphMealU;
     private TextView txtPercent;
+    private TextView txtMeal;
     private Counter counter;
     private Handler handler;
 
@@ -64,9 +68,19 @@ public class MealFragment extends Fragment {
         morphMealT = sourceView.findViewById(R.id.morphView_meal_t);
         morphMealU = sourceView.findViewById(R.id.morphView_meal_u);
         txtPercent = sourceView.findViewById(R.id.textView_meal_percent);
+        txtMeal = sourceView.findViewById(R.id.textView_meal);
     }
 
     private void initViews() {
+        Palette.Swatch swatch =
+                new Palette.Swatch(getResources().getColor(R.color.appMainColor, null), 100);
+
+        morphMealH.setPaintColor(swatch.getBodyTextColor());
+        morphMealT.setPaintColor(swatch.getBodyTextColor());
+        morphMealU.setPaintColor(swatch.getBodyTextColor());
+        txtPercent.setTextColor(swatch.getTitleTextColor());
+        txtMeal.setTextColor(swatch.getTitleTextColor());
+
         morphMealH.setCurrentId(R.drawable.vd_0);
         morphMealT.setCurrentId(R.drawable.vd_0);
         morphMealU.setCurrentId(R.drawable.vd_0);

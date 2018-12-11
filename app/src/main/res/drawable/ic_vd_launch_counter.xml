@@ -6,7 +6,7 @@
     <group>
         <clip-path android:pathData="M0,0h1080v1920h-1080z M 0,0" />
         <path
-            android:fillColor="#0097A7"
+            android:fillColor="@color/appMainColor"
             android:strokeLineCap="round"
             android:strokeLineJoin="round"
             android:pathData="M0.0,0.0h1080.0v1920.0h-1080.0z" />

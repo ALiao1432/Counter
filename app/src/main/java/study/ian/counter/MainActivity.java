@@ -25,5 +25,6 @@ public class MainActivity extends AppCompatActivity {
 
     private void setViews() {
         mainViewPager.setAdapter(new MainAdapter(getSupportFragmentManager()));
+        mainViewPager.setCurrentItem(1);
     }
 }

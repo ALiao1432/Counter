@@ -7,6 +7,7 @@ import android.os.Message;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.graphics.Palette;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -32,6 +33,9 @@ public class HourFragment extends Fragment {
     private MorphView morphSecT;
     private MorphView morphSecU;
     private TextView txtPercent;
+    private TextView txtHour;
+    private TextView txtMin;
+    private TextView txtSec;
     private Counter counter;
     private Handler handler;
 
@@ -81,9 +85,27 @@ public class HourFragment extends Fragment {
         morphSecT = sourceView.findViewById(R.id.morphView_sec_t);
         morphSecU = sourceView.findViewById(R.id.morphView_sec_u);
         txtPercent = sourceView.findViewById(R.id.textView_hour_percent);
+        txtHour = sourceView.findViewById(R.id.textView_hour);
+        txtMin = sourceView.findViewById(R.id.textView_minute);
+        txtSec = sourceView.findViewById(R.id.textView_sec);
     }
 
     private void initViews() {
+        Palette.Swatch swatch =
+                new Palette.Swatch(getResources().getColor(R.color.appMainColor, null), 100);
+
+        morphHourH.setPaintColor(swatch.getBodyTextColor());
+        morphHourT.setPaintColor(swatch.getBodyTextColor());
+        morphHourU.setPaintColor(swatch.getBodyTextColor());
+        morphMinT.setPaintColor(swatch.getBodyTextColor());
+        morphMinU.setPaintColor(swatch.getBodyTextColor());
+        morphSecT.setPaintColor(swatch.getBodyTextColor());
+        morphSecU.setPaintColor(swatch.getBodyTextColor());
+        txtPercent.setTextColor(swatch.getTitleTextColor());
+        txtHour.setTextColor(swatch.getTitleTextColor());
+        txtMin.setTextColor(swatch.getTitleTextColor());
+        txtSec.setTextColor(swatch.getTitleTextColor());
+
         morphHourH.setCurrentId(R.drawable.vd_0);
         morphHourT.setCurrentId(R.drawable.vd_0);
         morphHourU.setCurrentId(R.drawable.vd_0);

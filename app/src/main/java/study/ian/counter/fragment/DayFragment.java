@@ -7,6 +7,7 @@ import android.os.Message;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.graphics.Palette;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,6 +29,7 @@ public class DayFragment extends Fragment {
     private MorphView morphDayT;
     private MorphView morphDayU;
     private TextView txtPercent;
+    private TextView txtDay;
     private Counter counter;
     private Handler handler;
 
@@ -65,9 +67,19 @@ public class DayFragment extends Fragment {
         morphDayT = sourceView.findViewById(R.id.morphView_day_t);
         morphDayU = sourceView.findViewById(R.id.morphView_day_u);
         txtPercent = sourceView.findViewById(R.id.textView_day_percent);
+        txtDay = sourceView.findViewById(R.id.textView_day);
     }
 
     private void initViews() {
+        Palette.Swatch swatch =
+                new Palette.Swatch(getResources().getColor(R.color.appMainColor, null), 100);
+
+        morphDayH.setPaintColor(swatch.getBodyTextColor());
+        morphDayT.setPaintColor(swatch.getBodyTextColor());
+        morphDayU.setPaintColor(swatch.getBodyTextColor());
+        txtPercent.setTextColor(swatch.getTitleTextColor());
+        txtDay.setTextColor(swatch.getTitleTextColor());
+
         morphDayH.setCurrentId(R.drawable.vd_0);
         morphDayT.setCurrentId(R.drawable.vd_0);
         morphDayU.setCurrentId(R.drawable.vd_0);
