@@ -87,7 +87,7 @@ public class DayFragment extends Fragment {
 
     private void setViews() {
         new Thread(() -> {
-            while (true) {
+            while (counter.isTimeToGoBack()) {
                 Message clockMessage = new Message();
                 clockMessage.what = 9487;
                 handler.sendMessage(clockMessage);

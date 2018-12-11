@@ -27,7 +27,6 @@ public class Counter {
 
     private void setStartCalendar(int year, int month, int date) {
         startC.set(year, month, date, 0, 0);
-
     }
 
     private void setEndCalendar(int year, int month, int date) {
@@ -84,6 +83,10 @@ public class Counter {
         float totalTimeInMilli = (float) endC.getTimeInMillis() - startC.getTimeInMillis();
         float finishPercent = 1 - remainTimeInMilli / totalTimeInMilli;
         return finishPercent * 100;
+    }
+
+    public boolean isTimeToGoBack() {
+        return !((endC.getTimeInMillis() - Calendar.getInstance().getTime().getTime()) <= 0L);
     }
 
     private boolean hasBreakfast(int hour) {

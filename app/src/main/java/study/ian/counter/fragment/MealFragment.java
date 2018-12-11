@@ -1,12 +1,15 @@
 package study.ian.counter.fragment;
 
 import android.annotation.SuppressLint;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.graphics.Palette;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +20,8 @@ import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.List;
 
+import study.ian.counter.DateSelectedActivity;
+import study.ian.counter.util.PrefManager;
 import study.ian.morphview.MorphView;
 import study.ian.counter.R;
 import study.ian.counter.util.Counter;
@@ -88,7 +93,7 @@ public class MealFragment extends Fragment {
 
     private void setViews() {
         new Thread(() -> {
-            while (true) {
+            while (counter.isTimeToGoBack()) {
                 Message clockMessage = new Message();
                 clockMessage.what = 9487;
                 handler.sendMessage(clockMessage);
@@ -100,6 +105,20 @@ public class MealFragment extends Fragment {
                     break;
                 }
             }
+            getActivity().runOnUiThread(() ->
+                    new AlertDialog.Builder(getContext())
+                            .setMessage(R.string.text_it_is_time)
+                            .setPositiveButton(R.string.text_reset_cal, (dialog, which) -> {
+                                PrefManager prefManager = new PrefManager(getContext());
+                                prefManager.setFirstTimeLaunch(true);
+
+                                Intent intent = new Intent();
+                                intent.setClass(getActivity(), DateSelectedActivity.class);
+                                getContext().startActivity(intent);
+                                getActivity().finish();
+                            })
+                            .setNegativeButton(R.string.text_exit, (dialog, which) -> getActivity().finish()).show());
+
         }).start();
     }
 }
